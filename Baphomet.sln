@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baphomet", "Baphomet\Baphomet.csproj", "{1368839D-C86F-4781-9544-D585466FAC6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1368839D-C86F-4781-9544-D585466FAC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1368839D-C86F-4781-9544-D585466FAC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1368839D-C86F-4781-9544-D585466FAC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1368839D-C86F-4781-9544-D585466FAC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0ADAB9B1-6EAE-40FD-AE97-0ABE7524CEB9}
+	EndGlobalSection
+EndGlobal
