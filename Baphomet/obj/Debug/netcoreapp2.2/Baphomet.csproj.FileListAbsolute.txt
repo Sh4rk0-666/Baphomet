@@ -9,3 +9,14 @@ C:\Users\chungo\Documents\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.Ass
 C:\Users\chungo\Documents\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.AssemblyInfo.cs
 C:\Users\chungo\Documents\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.dll
 C:\Users\chungo\Documents\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.pdb
+C:\Users\MS\Desktop\Baphomet\Baphomet\bin\Debug\netcoreapp2.2\Baphomet.deps.json
+C:\Users\MS\Desktop\Baphomet\Baphomet\bin\Debug\netcoreapp2.2\Baphomet.runtimeconfig.json
+C:\Users\MS\Desktop\Baphomet\Baphomet\bin\Debug\netcoreapp2.2\Baphomet.runtimeconfig.dev.json
+C:\Users\MS\Desktop\Baphomet\Baphomet\bin\Debug\netcoreapp2.2\Baphomet.dll
+C:\Users\MS\Desktop\Baphomet\Baphomet\bin\Debug\netcoreapp2.2\Baphomet.pdb
+C:\Users\MS\Desktop\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.csprojAssemblyReference.cache
+C:\Users\MS\Desktop\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.csproj.CoreCompileInputs.cache
+C:\Users\MS\Desktop\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.AssemblyInfoInputs.cache
+C:\Users\MS\Desktop\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.AssemblyInfo.cs
+C:\Users\MS\Desktop\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.dll
+C:\Users\MS\Desktop\Baphomet\Baphomet\obj\Debug\netcoreapp2.2\Baphomet.pdb

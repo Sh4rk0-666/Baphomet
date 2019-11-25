@@ -12,38 +12,46 @@ namespace Baphomet
             // creo una instancia del algoritmo aes 
             SymmetricAlgorithm aes = new AesManaged();
 
-            byte[] key = aes.Key; //llave de cifrado auto que auto genero con aes
+            byte[] key = aes.Key;
 
-            Console.WriteLine("Enter message to encrypt:");
-            string message = Console.ReadLine();
+            //Console.WriteLine("Enter message to encrypt:");
+            //string message = Console.ReadLine();
+
+            var path = Path.GetFullPath("files/chucknorris.jpg");
+            byte[] message = System.IO.File.ReadAllBytes(path);
 
             //metodo de cifrado
             EncryptText(aes, message, "encryptedData.txt");
 
            //metodo para decifrar mensage
-            var Message =  DecryptData(aes, "encryptedData.txt");
+            var Message =  DecryptData(aes, "encryptedData.txt.Baphomet");
 
-            File.WriteAllText("Decryp.txt", Message);
+            File.WriteAllText("Decryp.jpg", Message);
 
         }
 
-        static void EncryptText(SymmetricAlgorithm aesAlgorithm, string text, string fileName)
+        static void EncryptText(SymmetricAlgorithm aesAlgorithm, byte[] text, string fileName)
         {
-            ICryptoTransform encryptor = aesAlgorithm.CreateEncryptor(aesAlgorithm.Key, aesAlgorithm.IV);
+           // ICryptoTransform encryptor = aesAlgorithm.CreateEncryptor(aesAlgorithm.Key, aesAlgorithm.IV);
 
+            byte[] encryptedBytes = null;
             using (MemoryStream ms = new MemoryStream())
             {
-                using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                using (RijndaelManaged AES = new RijndaelManaged())
                 {
-                    using (StreamWriter writer = new StreamWriter(cs))
+                    AES.Mode = CipherMode.CBC;
+
+                    using (var cs = new CryptoStream(ms,AES.CreateEncryptor(aesAlgorithm.Key, aesAlgorithm.IV), CryptoStreamMode.Write))
                     {
-                        writer.Write(text);
+                        cs.Write(text, 0, text.Length);
+                        cs.Close();
                     }
+
+                    encryptedBytes = ms.ToArray();
+                    File.WriteAllBytes(fileName, encryptedBytes);
+                    System.IO.File.Move(fileName, fileName + ".Baphomet");
+
                 }
-
-                byte[] encryptedDataBuffer = ms.ToArray();
-
-                File.WriteAllBytes(fileName, encryptedDataBuffer);
             }
         }
 
@@ -51,19 +59,27 @@ namespace Baphomet
         {
             ICryptoTransform decryptor = aesAlgorithm.CreateDecryptor(aesAlgorithm.Key, aesAlgorithm.IV);
 
+            byte[] decryptedBytes = null;
             byte[] encryptedDataBuffer = File.ReadAllBytes(fileName);
 
-            using (MemoryStream ms = new MemoryStream(encryptedDataBuffer))
+            using (MemoryStream ms = new MemoryStream())
             {
-                using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                using (RijndaelManaged AES = new RijndaelManaged())
                 {
-                    using (StreamReader reader = new StreamReader(cs))
+                    using (var cs = new CryptoStream(ms,decryptor , CryptoStreamMode.Write))
                     {
-                        return reader.ReadToEnd();
+                        cs.Write(encryptedDataBuffer, 0, encryptedDataBuffer.Length);
+                        cs.Close();
                     }
+                    decryptedBytes = ms.ToArray();
+                    File.WriteAllBytes(fileName, decryptedBytes);
+
+                    
                 }
 
             }
+
+            return ("fefef");
         }
     }
 }
