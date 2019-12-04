@@ -686,28 +686,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sh4Rk0\\.nuget\\packages\\": {},
+    "C:\\Users\\chungo\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sh4Rk0\\Desktop\\Baphomet\\Baphomet\\Baphomet.csproj",
+      "projectUniqueName": "C:\\Users\\chungo\\Documents\\Baphomet\\Baphomet\\Baphomet.csproj",
       "projectName": "Baphomet",
-      "projectPath": "C:\\Users\\Sh4Rk0\\Desktop\\Baphomet\\Baphomet\\Baphomet.csproj",
-      "packagesPath": "C:\\Users\\Sh4Rk0\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sh4Rk0\\Desktop\\Baphomet\\Baphomet\\obj\\",
+      "projectPath": "C:\\Users\\chungo\\Documents\\Baphomet\\Baphomet\\Baphomet.csproj",
+      "packagesPath": "C:\\Users\\chungo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chungo\\Documents\\Baphomet\\Baphomet\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sh4Rk0\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\chungo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
