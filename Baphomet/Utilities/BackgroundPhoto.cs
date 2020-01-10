@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Baphomet.Utilities
 {
+
     public class BackgroundPhoto
     {
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SystemParametersInfo(uint uiAction, uint uiParam, String pvParam, uint fWinIni);
+
+        private const uint SPI_SETDESKWALLPAPER = 0x14;
+        private const uint SPIF_UPDATEINIFILE = 0x1;
+        private const uint SPIF_SENDWININICHANGE = 0x2;
+
+
         //base64 image local string
         public string imageBase64()
         {
@@ -21,5 +33,26 @@ namespace Baphomet.Utilities
             new WebClient().DownloadFile("http://www.scottgames.com/4.jpg", filename);
             return filename;
         }
+
+        //Wallpaper method.
+        public void ChangeWallpaper(string imagebase64, string dropPath)
+        {
+            byte[] imageBytes = Convert.FromBase64String(imagebase64);
+            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            ms.Write(imageBytes, 0, imageBytes.Length);
+
+            var myimage = ms.ToArray();
+            File.WriteAllBytes(dropPath + "\\bapho.jpg", myimage);
+
+            var filename = dropPath + "\\bapho.jpg";
+
+            uint flag = 0;
+            if (!SystemParametersInfo(SPI_SETDESKWALLPAPER,
+                    0, filename, flag))
+            {
+                Console.WriteLine("Error");
+            }
+
+        }//</changeImgage>
     }
 }

