@@ -81,5 +81,6 @@ namespace Baphomet.Utilities
             }
             return device;
         }
+
     }
 }

