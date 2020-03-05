@@ -26,3 +26,5 @@ This project is written in C# using the net-core application framework 3.1.The m
 * List of processes that we want to stop in case they are running.
 * Methods to convert base64 to image or download the image from a url.
 * public key that will be hardcode to encrypt symmetric key.
+
+## twitter account: [@Sh4Rk_0](https://twitter.com/Sh4Rk_0)
