@@ -1,6 +1,7 @@
 # Baphomet Ransomware
 
 This is a proof of concept of how a ransomware works, and some techniques that we usually use to hijack our files.
+This project is written in C # using the core application framework 3.1 .net. The main idea of the code is to make it as readable as possible so that people have an idea of how this type of malware acts and works.
 
 **Baphomet features**
 
