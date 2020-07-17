@@ -67,15 +67,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[3.1.0, 3.1.0]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[3.1.0, 3.1.0]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[3.1.0, 3.1.0]"
+              "version": "[3.1.5, 3.1.5]"
             }
           ],
           "frameworkReferences": {
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

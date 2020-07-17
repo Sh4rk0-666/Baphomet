@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace BaphometDecrypt
 {
@@ -11,7 +12,7 @@ namespace BaphometDecrypt
             var userName = Environment.UserName;
             //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
             var Dirs = new[] { "\\Downloads" };
-            var userDir = "C:\\Users\\" + userName;
+            var userDir = Path.Combine("C:\\Users\\",userName);
             var password = Message();
 
             for (int d = 0; d < Dirs.Length; d++)//recorro cada uno de los dirs validos

