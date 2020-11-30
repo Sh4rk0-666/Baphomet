@@ -27,6 +27,28 @@ This project is written in C# using the net-core application framework 3.1.The m
 * Methods to convert base64 to image or download the image from a url.
 * public key that will be hardcode to encrypt symmetric key.
 
+**Custom arrys & var**
+
+* Directories we want to encrypt >
+***file: Program.cs***
+***line: 25***
+* Valid extensions to encrypt >
+***file: /Utilities/Crypt.cs***
+***line: 31***
+* Processes that we want to stop >
+***file: /Utilities/Diagnostics.cs***
+***line: 18***
+* (RSA) Public key that encrypts the symmetric key > 
+***file: /Utilities/CryptRSA.cs***
+***line: 14***
+* Hostnames where we will receive the vicma data > 
+***file: /Utilities/NetInfo.cs***
+***line: 65***
+
+### :heavy_exclamation_mark: In our hosts we must have an image to obtain a response status 200.:heavy_exclamation_mark:
+
+
+
 
 ## twitter account: [@Chungo_0](https://twitter.com/Chungo_0)
 
