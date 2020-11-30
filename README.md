@@ -53,6 +53,9 @@ This project is written in C# using the net-core application framework 3.1.The m
 * BpahometDecrypt = project to decrypt files.
 * rsa = here we generate rsa keys to encrypt symmetric key with which we encrypt the files, Also decrypt the symmetric key that is generated in the victim.
 
+## Debug test
+![Alt Text](example-gif.gif)
+
 ## twitter account: [@Chungo_0](https://twitter.com/Chungo_0)
 
 ### :warning: Warning!
