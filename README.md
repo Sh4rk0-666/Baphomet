@@ -28,7 +28,7 @@ This project is written in C# using the net-core application framework 3.1.The m
 * public key that will be hardcode to encrypt symmetric key.
 
 
-## twitter account: [@Sh4Rk_0](https://twitter.com/Sh4Rk_0)
+## twitter account: [@Chungo_0](https://twitter.com/Chungo_0)
 
 ### :warning: Warning!
 
