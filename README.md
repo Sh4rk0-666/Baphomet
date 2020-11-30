@@ -48,7 +48,10 @@ This project is written in C# using the net-core application framework 3.1.The m
 ### :heavy_exclamation_mark: In our hosts we must have an image to obtain a response status 200.:heavy_exclamation_mark:
 
 
-
+**Projects**
+* Baphomet = project to encrypt files.
+* BpahometDecrypt = project to decrypt files.
+* rsa = here we generate rsa keys to encrypt symmetric key with which we encrypt the files, Also decrypt the symmetric key that is generated in the victim.
 
 ## twitter account: [@Chungo_0](https://twitter.com/Chungo_0)
 
