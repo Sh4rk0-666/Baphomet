@@ -27,7 +27,7 @@ This project is written in C# using the net-core application framework 3.1.The m
 * Methods to convert base64 to image or download the image from a url.
 * public key that will be hardcode to encrypt symmetric key.
 
-**Custom arrys & var**
+**Custom arrays & var**
 
 * Directories we want to encrypt >
 ***file: Program.cs***
