@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MS\\Desktop\\Baphomet-Ransom\\Baphomet\\Baphomet\\Baphomet.csproj": {}
+    "C:\\Users\\MS\\Documents\\Baphomet\\Baphomet\\Baphomet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MS\\Desktop\\Baphomet-Ransom\\Baphomet\\Baphomet\\Baphomet.csproj": {
+    "C:\\Users\\MS\\Documents\\Baphomet\\Baphomet\\Baphomet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MS\\Desktop\\Baphomet-Ransom\\Baphomet\\Baphomet\\Baphomet.csproj",
+        "projectUniqueName": "C:\\Users\\MS\\Documents\\Baphomet\\Baphomet\\Baphomet.csproj",
         "projectName": "Baphomet",
-        "projectPath": "C:\\Users\\MS\\Desktop\\Baphomet-Ransom\\Baphomet\\Baphomet\\Baphomet.csproj",
+        "projectPath": "C:\\Users\\MS\\Documents\\Baphomet\\Baphomet\\Baphomet.csproj",
         "packagesPath": "C:\\Users\\MS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MS\\Desktop\\Baphomet-Ransom\\Baphomet\\Baphomet\\obj\\",
+        "outputPath": "C:\\Users\\MS\\Documents\\Baphomet\\Baphomet\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -67,15 +67,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[3.1.5, 3.1.5]"
+              "version": "[3.1.7, 3.1.7]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[3.1.5, 3.1.5]"
+              "version": "[3.1.7, 3.1.7]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[3.1.5, 3.1.5]"
+              "version": "[3.1.7, 3.1.7]"
             }
           ],
           "frameworkReferences": {
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
