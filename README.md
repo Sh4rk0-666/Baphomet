@@ -15,7 +15,7 @@ This project is written in C# using the net-core application framework 3.1.The m
 * Program to decrypt the encryption key.
 * Program to decrypt encrypted data.
 * Hostname list to send the victim's data (redundancy).
-* Doesn't detected to antivirus programs (Date: 3/5/2020 1:33pm).
+* Doesn't detected to antivirus programs (Date: 11/30/2020 12:25pm).
 * Hardcode image in base64 to change wallpaper (Baphomet image).
 
 **Dynamic settings**
