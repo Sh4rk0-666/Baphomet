@@ -31,7 +31,7 @@ This project is written in C# using the net-core application framework 3.1.The m
 
 * Directories we want to encrypt >
 ***file: Program.cs***
-***line: 25***
+***line: 26***
 * Valid extensions to encrypt >
 ***file: /Utilities/Crypt.cs***
 ***line: 31***
@@ -43,15 +43,16 @@ This project is written in C# using the net-core application framework 3.1.The m
 ***line: 14***
 * Hostnames where we will receive the vicma data > 
 ***file: /Utilities/NetInfo.cs***
-***line: 65***
+***line: 68***
 
 ### :heavy_exclamation_mark: In our hosts we must have an image to obtain a response status 200.:heavy_exclamation_mark:
 
 
-**Projects**
+**Projects & files**
 * Baphomet = project to encrypt files.
 * BpahometDecrypt = project to decrypt files.
 * rsa = here we generate rsa keys to encrypt symmetric key with which we encrypt the files, Also decrypt the symmetric key that is generated in the victim.
+* get.php = We upload this file to our hosting to capture the victim's data.
 
 ## Debug test
 ![Alt Text](example-gif.gif)
