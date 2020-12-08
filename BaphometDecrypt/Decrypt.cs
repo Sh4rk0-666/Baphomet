@@ -9,7 +9,7 @@ namespace BaphometDecrypt
 {
     public class Decrypt
     {
-
+        //Recorro directorio por directorio para recuperar la data
         public void directoryRoad(string targetPath, string password)
         {
 

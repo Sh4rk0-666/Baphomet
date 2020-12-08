@@ -10,7 +10,8 @@ namespace BaphometDecrypt
             Decrypt decrypt = new Decrypt();
 
             var userName = Environment.UserName;
-            //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
+            //Directorios cifrados("Desktop","Documents","Pictures" etc)
+            //debemos tener los mismos directorios que colocamos en el proyecto Baphomet
             var Dirs = new[] { "\\Downloads" };
             var userDir = Path.Combine("C:\\Users\\",userName);
             var password = Message();
@@ -22,6 +23,7 @@ namespace BaphometDecrypt
             }
         }
 
+        //Aqui pediremos la llave con la que ciframos los archivos.
         static string Message()
         {
             Console.BackgroundColor = ConsoleColor.DarkRed;
