@@ -1,5 +1,9 @@
 # Baphomet Ransomware
 
+[![dot net core 3.1](https://img.shields.io/badge/dotnet%20core-3.1-blue)](https://dotnet.microsoft.com/download/dotnet-core/3.1) 
+[![License](https://img.shields.io/badge/License-MIT-lightgrey)](https://github.com/Sh4rk0-666/BaphoDashBoard/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/badge/Twitter-%40Chungo__0-%231da1f2)](https://twitter.com/Chungo_0/)
+
 This is a proof of concept of how a ransomware works, and some techniques that we usually use to hijack our files.
 This project is written in C# using the net-core application framework 3.1.The main idea of the code is to make it as readable as possible so that people have an idea of how this type of malware acts and works.
 
