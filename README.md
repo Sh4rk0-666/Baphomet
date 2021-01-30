@@ -62,7 +62,6 @@ This project is written in C# using the net-core application framework 3.1.The m
 ![Alt Text](example-gif.gif)
 
 ## twitter account: [@Chungo_0](https://twitter.com/Chungo_0)
-## Youtube Video: [Here](https://youtu.be/AdNmxlgqm_A)
 ## Donations to continue working on code updates: [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/Sh4rk0)
 ## Donate your grain of sand in bitcoin, to buy a coffee :( 
 ### Bitcoin Wallet: bc1qh5zql6xq3txndwl6sfkvmuf4euk49rffnge3gm
